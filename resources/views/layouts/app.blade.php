@@ -32,7 +32,7 @@
                 <a href="{{ route('register') }}" class="mx-2">Register</a>
                 @endguest
                 @auth
-                    <a href="{{route('home')}}">{{ auth()->user()->name }}</a>
+                    <a href="{{route('home')}}" class="mx-2">{{ auth()->user()->name }}</a>
                     <form action="{{route('logout')}}" method="POST">
                         @csrf
                         <button>Logout</button>

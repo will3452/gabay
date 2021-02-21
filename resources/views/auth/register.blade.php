@@ -6,7 +6,6 @@
             <h1 class="text-center p-2 text-2xl uppercase">
                 REGISTER
             </h1>
-            <p class="px-2 uppercase text-red-500">*** All fields are required.</p>
             @livewire('register-form')
         </div>
     </div>
