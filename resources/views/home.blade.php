@@ -25,7 +25,7 @@
             
             @if (auth()->user()->account->type == 'provider')
                 <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 ">
-                    @livewire('dashboard-card', ['menuLink'=>'#','menuName'=>'View Request', 'menuImage'=> asset('svg/request.svg')])
+                    @livewire('dashboard-card', ['menuLink'=>route('providers.requests.index'),'menuName'=>'View Request', 'menuImage'=> asset('svg/request.svg')])
                 </div>
             @endif
 

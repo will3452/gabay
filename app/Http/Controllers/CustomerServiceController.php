@@ -28,7 +28,7 @@ class CustomerServiceController extends Controller
      */
     public function show($id)
     {
-        return view('services.show', ['service', Service::find($id)]);
+        return view('services.show', ['service'=> Service::find($id)]);
     }
 
 

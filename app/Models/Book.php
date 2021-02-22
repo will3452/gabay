@@ -5,20 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Service extends Model
+class Book extends Model
 {
     use HasFactory;
     protected $guarded = [];
 
-    public function getSystemRateAttribute(){
-        return $this->rate + ($this->rate * .2);
+    public function service(){
+        return $this->belongsTo(Service::class);
     }
 
-    public function user(){
+    public function customer(){
         return $this->belongsTo(User::class);
-    }
-
-    public function books(){
-        return $this->hasMany(Book::class);
     }
 }

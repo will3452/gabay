@@ -23,7 +23,9 @@ class ProfileCardList extends Component
    
     public function approve(){
         $this->account->approved_at = now();
-        $this->account->user->services()->first()->approved_at = now();
+        $res = $this->account->user->services()->first();
+        $res->approved_at = now();
+        $res->save();
         $this->account->save();
         return redirect()->route('admins.applications.index');
     }

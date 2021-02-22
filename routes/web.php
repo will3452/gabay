@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminHomeController;
+use App\Http\Controllers\CustomerBookController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\CustomerServiceController;
+use App\Http\Controllers\ProviderRequestController;
 use App\Http\Controllers\AdminApplicationController;
 
 
@@ -19,8 +21,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/registered-successfully', function(){
     return 'regisration success!';
 });
+
 Route::prefix('/customers')->name('customers.')->group(function(){
     Route::resource('/services', CustomerServiceController::class);
+    Route::resource('/bookings', CustomerBookController::class);
+});
+
+//providers
+
+Route::prefix('providers')->name('providers.')->group(function(){
+    Route::resource('/requests', ProviderRequestController::class);
 });
 
 //admins

@@ -7,7 +7,7 @@
             </a>
             <div class="text-center">
                 <h3 class="text-2xl uppercase font-bold">{{ $account->user->name }}</h3>
-                <div class="text-xl">{{ $account->user->services()->first()->name }} / P {{ $account->user->services()->first()->rate }}</div>
+                <div class="text-xl">{{ $account->user->services()->first()->name }} / P {{ $account->user->services()->first()->system_rate }}</div>
                 {{-- <div>{{ $account->address }}</div> --}}
                 <div>
                     <i class="fa fa-star"></i>
