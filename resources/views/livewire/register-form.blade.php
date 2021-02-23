@@ -63,7 +63,7 @@
             </div>
             @endif
             
-            <div class="flex w-full p-2 justify-end" wire:loading.remove>
+            <div class="flex w-full p-2 justify-end">
                 <button type="button" class="p-2 px-4 bg-gray-900 text-gray-100 uppercase" wire:click="next(['{{ $type == 'customer' ? $type: $serviceRate }}','{{$type == 'customer' ? $type: $serviceName }}','{{ $name }}', '{{ $mobile_number }}', '{{ $address }}'])">Next</button>
             </div>
         @endif
@@ -88,7 +88,7 @@
                 </div>
                 <input wire:model="valid_id" type="file" placeholder="Valid Id" required class="w-full p-2 text-xl" name="valid_id">
             </div>
-            <div class="flex w-full p-2 justify-between" wire:loading.remove>
+            <div class="flex w-full p-2 justify-between">
                 <button wire:click="prev()" type="button" class="p-2 px-4 bg-gray-100 text-gray-900 border-2 border-gray-900 uppercase">Previous</button>
                 <button wire:click="next(['{{ $valid_id ? $valid_id->temporaryUrl() :'' }}', '{{ $birthdate }}'])" type="button" class="p-2 px-4 bg-gray-900 text-gray-100 uppercase">Next</button>
             </div>
@@ -123,9 +123,9 @@
                 <input  autocomplete="new-password" type="password" id="confirmpassword" wire:model="cpassword" placeholder="Confim password" required class="w-full p-2 text-xl" name="passwordconfirm">
             </div>
             
-            <div class="flex w-full p-2 justify-between" wire:loading.remove>
+            <div class="flex w-full p-2 justify-between">
                 <button wire:click="prev()" type="button" class="p-2 px-4 bg-gray-100 text-gray-900 border-2 border-gray-900 uppercase">Previous</button>
-                <button wire:click="next(['{{ $opassword }}', '{{ $picture ? $picture->temporaryUrl() :'' }}', '{{ $cpassword }}', '{{ $email }}'])" type="button" class="p-2 px-4 bg-gray-900 text-gray-100 uppercase">Finalize</button>
+                <button  wire:loading.remove wire:click="next(['{{ $opassword }}', '{{ $picture ? $picture->temporaryUrl() :'' }}', '{{ $cpassword }}', '{{ $email }}'])" type="button" class="p-2 px-4 bg-gray-900 text-gray-100 uppercase">Finalize</button>
             </div>
         @endif
     </form>

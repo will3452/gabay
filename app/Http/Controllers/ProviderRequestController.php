@@ -18,76 +18,29 @@ class ProviderRequestController extends Controller
     }
     public function index()
     {
+        $status = request()->status ?? 'pending';
         if(auth()->user()->account->type != 'provider') return back();
-        $books = Book::whereHas('service', function(Builder $query){
+        $books = Book::where('status',$status)->whereHas('service', function(Builder $query){
             $query->where('user_id', auth()->user()->id);
         })->get();
         return view('requests.index', compact('books'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request, $id)
     {
-        //
+        if(empty($request->answer)) return back();
+
+        $book = Book::find($id);
+        if($request->answer == 'accept'){
+            $book->status = 'in-progress';
+        }else {
+            $book->status = 'declined';
+        }
+
+        $book->save();
+        alert()->success('success', 'Done!');
+        return back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

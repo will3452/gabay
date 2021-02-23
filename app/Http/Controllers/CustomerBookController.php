@@ -13,7 +13,9 @@ class CustomerBookController extends Controller
      */
     public function index()
     {
-        //
+        $status = request()->status ?? 'pending';
+        $books = auth()->user()->books()->where('status', $status)->get();
+        return view('books.index', compact('books'));
     }
 
     
@@ -38,8 +40,8 @@ class CustomerBookController extends Controller
         $validated['proof'] = $validated['proof']->store('/public/proof');
 
         auth()->user()->books()->create($validated);
-        
-        return 'book success!';
+        alert()->success('booking', 'Success');
+        return redirect('/home');
     }
 
     /**

@@ -57,7 +57,7 @@ class RegisterForm extends Component
                 'rate'=>$this->serviceRate
             ]);
         }
-
+        alert()->success('regisration', 'success');
         return redirect()->to('/registered-successfully');
     }
     

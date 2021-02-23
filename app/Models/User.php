@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -42,6 +43,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getPendingBooksCountAttribute(){
+        return $this->books()->where('status', 'pending')->count();
+    }
+
+    public function getPendingRequestsCountAttribute(){
+        return $this->services()->whereHas('books', function(Builder $query){
+            $query->where('status', 'pending');
+        })->count();
+    }
+
     public function account(){
         return $this->hasOne(Account::class);
     }
@@ -52,5 +63,9 @@ class User extends Authenticatable
 
     public function books(){
         return $this->hasMany(Book::class);
+    }
+
+    public function feedbacks(){ //customer relation
+        return $this->hasMany(Feedback::class);
     }
 }

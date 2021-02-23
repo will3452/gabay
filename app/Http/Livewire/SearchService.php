@@ -12,7 +12,7 @@ class SearchService extends Component
     public $selected = '';
 
     public function updatedSelected(){
-        $this->result = Service::where('name', $this->selected)->whereNotNull('approved_at')->with('user')->get();
+        $this->result = Service::where('user_id', '!=', auth()->user()->id)->where('name', $this->selected)->whereNotNull('approved_at')->with('user')->get();
     }
     public function render()
     {

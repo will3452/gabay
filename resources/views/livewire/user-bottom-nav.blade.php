@@ -13,7 +13,11 @@
     @endif
     <div class="flex fixed bottom-0  h-16 bg-gray-900 w-full items-center justify-evenly">
         <button class="text-4xl text-white" wire:click.prevent="$set('menushow', {{ !$menushow }})">
-            <i class="fa fa-bars"></i>
+            @if (!$menushow)
+                <i class="fa fa-bars"></i>
+            @else
+                <i class="fa fa-times"></i>
+             @endif
         </button>
         <a class="text-4xl text-white" href="/home">
             <i class="fa fa-home"></i>

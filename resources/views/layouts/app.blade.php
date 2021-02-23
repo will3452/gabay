@@ -21,6 +21,7 @@
     @livewireStyles
 </head>
 <body>
+    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
     <div id="app">
         <nav class="flex justify-between p-2">
             <a href="#">
@@ -33,6 +34,7 @@
                 @endguest
             </div>
         </nav>
+        <a style="z-index:999" href="{{ url()->full() }}" class="fixed bottom-20 right-0 bg-gray-900 text-white p-2 w-8 h-8 flex justify-center items-center"><i class="fa fa-refresh"></i></a>
         <main class="py-4">
             @yield('content')
         </main>
@@ -40,6 +42,7 @@
             @livewire('user-bottom-nav')
         @endauth
     </div>
+    <div class="h-32"></div>
     @livewireScripts
 </body>
 </html>
