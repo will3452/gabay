@@ -8,11 +8,12 @@
         <a href="{{ url()->current() }}?status=completed" class="p-2 {{ request()->status == 'completed' ? 'bg-gray-900 text-white':'text-gray-900' }} border-2 border-gray-900 ">COMPLETED.</a>
     </div>
     @forelse ($books as $book)
-        <div class="p-2 uppercase">
+        <div class="p-2 uppercase max-w-md mx-auto">
             <div class="border-2 border-gray-900 p-2 w-full flex justify-center items-center flex-col mt-2">
                 <img src="{{ $book->user->account->public_picture }}" alt="" class="w-32 h-32 object-cover">
                  <h3 class="text-2xl font-bold uppercase">{{ $book->user->name }}</h3>
                  <h3 class="uppercase">Service Need: {{ $book->service->name }}</h3>
+                 <h3 class="uppercase">Payment Method: {{ $book->payment_type }}</h3>
                  <p>
                      Date: {{ $book->date }}, Time: {{ $book->time }}
                  </p>

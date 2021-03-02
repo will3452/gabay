@@ -17,11 +17,12 @@ class CreateBooksTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('service_id');
-            $table->string('payment_value');
+            $table->string('payment_value')->nullable();
+            $table->string('payment_type')->default('COD');
             $table->string('address');
             $table->string('date');
             $table->string('time');
-            $table->text('proof');
+            $table->text('proof')->nullable();
             $table->string('status')->default('pending');
             $table->timestamps();
         });

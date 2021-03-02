@@ -23,7 +23,7 @@
 <body>
     @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
     <div id="app">
-        <nav class="flex justify-between p-2">
+        <nav class="flex justify-between p-4 bg-gray-900 text-white text-2xl uppercase">
             <a href="#">
                 {{ config('app.name', "GABAY") }}
             </a>

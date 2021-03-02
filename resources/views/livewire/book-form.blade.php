@@ -3,16 +3,27 @@
         @csrf
         @if ($show)
         <input type="hidden" name="service_id" value="{{$service->id}}">
-        <div class="bg-gray-100 ">
-            <div class="text-yellow-900 p-2 bg-yellow-300 uppercase ">
-                <div class="font-bold">How to get proof of payment ? </div>
-                Send Money via GCASH to this number "09096524461"  and save or capture the receipt.
-            </div>
-            <label for="">Enter Proof Of Payment</label>
-            <input name="proof" type="file" required>
+        <div class="bg-gray-100 p-2" x-data="{payment_type:'COD'}">
             <div class="pt-2">
-                <input type="text" name="payment_value" required placeholder="PAYMENT VALUE" class="w-full p-2 border-2 border-gray-900">
+                Select Payment Method
+                <select name="payment_type" x-model="payment_type" id="" class="w-full p-2 border-2 border-gray-900">
+                    <option value="COD">COD</option>
+                    <option value="GCASH">GCASH</option>
+                </select>
             </div>
+            <template x-if="payment_type == 'GCASH'">
+                <div>
+                    <div class="text-yellow-900 p-2 bg-yellow-300 uppercase mb-2">
+                        <div class="font-bold">How to get proof of payment ? </div>
+                        Send Money via GCASH to this number "09096524461"  and save or capture the receipt.
+                    </div>
+                    <label for="">Enter Proof Of Payment</label>
+                    <input name="proof" type="file" class="block" required>
+                    <div class="pt-2">
+                        <input type="text" name="payment_value" required placeholder="PAYMENT VALUE" class="w-full p-2 border-2 border-gray-900">
+                    </div>
+                </div>
+            </template>
             <div class="pt-2">
                 <input type="text"  name="address" wire:model.lazy="address" required placeholder="ADDRESS" class="w-full p-2 border-2 border-gray-900" required>
                 <div>

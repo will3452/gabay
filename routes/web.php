@@ -20,7 +20,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/registered-successfully', function(){
-    return 'regisration success!';
+    alert()->success('registered successfully.');
+    return redirect('/login');
 });
 
 Route::prefix('/customers')->name('customers.')->group(function(){

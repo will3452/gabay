@@ -30,14 +30,17 @@ class CustomerBookController extends Controller
     {
         $validated = $this->validate($request, [
             'service_id'=>'required',
-            'payment_value'=>'required',
-            'proof'=>'required',
+            'payment_value'=>'',
+            'proof'=>'',
+            'payment_type'=>'required',
             'address'=>'required',
             'date'=>'required',
             'time'=>'required'
         ]);
 
-        $validated['proof'] = $validated['proof']->store('/public/proof');
+        if($validated['payment_type'] == 'GCASH'){
+            $validated['proof'] =  $validated['proof']->store('/public/proof');
+        }
 
         auth()->user()->books()->create($validated);
         alert()->success('booking', 'Success');
